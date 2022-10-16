@@ -8,16 +8,19 @@ use Inertia\Inertia;
 
 class CartController extends Controller
 {
-    public function index()
+    public function index(): \Inertia\Response
     {
-        return Inertia::render('Cart');
+        return Inertia::render('Cart', [
+            'cartProducts' => cart()->products(),
+            'total'        => formatMoney(cart()->total())
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $validated = $request->validate([
             'productId' => ['required', 'numeric', 'exists:products,id'],
-            'quantity' => ['required', 'numeric', 'min:1'], // max: product->stock_quantity
+            'quantity'  => ['required', 'numeric', 'min:1'], // max: product->stock_quantity
         ]);
 
         cart()->add(...$validated);

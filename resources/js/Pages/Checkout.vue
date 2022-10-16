@@ -1,9 +1,8 @@
 <script setup></script>
 
 <template>
-    <div>
-        <div class="border-t border-gray-300 mb-0"></div>
-        <div class="mx-auto max-w-[1920px] px-4 md:px-8 2xl:px-16">
+
+   <div class="mx-auto max-w-[1920px] px-4 md:px-8 2xl:px-16">
             <div class="py-8 lg:py-10 xl:py-14 max-w-[1280px] mx-auto">
                 <div
                     class="flex flex-col lg:flex-row items-center lg:items-start m-auto lg:space-x-7 xl:space-x-12 rtl:space-x-reverse w-full"
@@ -654,5 +653,5 @@
                 </form>
             </div>
         </div>
-    </div>
+
 </template>

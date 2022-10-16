@@ -6,33 +6,28 @@ use App\Models\Product;
 
 class CartItem
 {
-
     public function __construct(
-        private int $id,
-        private string $name,
-        private int $price,
-        private int $quantity,
-        private ?string $image = null,
+        protected Product $product,
+        protected int $quantity,
     ) {
         //
     }
 
-
     public function getId(): int
     {
-        return $this->id;
+        return $this->product->id;
     }
 
 
     public function getName(): string
     {
-        return $this->name;
+        return $this->product->name;
     }
 
 
     public function getPrice(): int
     {
-        return $this->price;
+        return $this->product->getRawOriginal('price');
     }
 
 
@@ -41,36 +36,44 @@ class CartItem
         return $this->quantity;
     }
 
-
     public function getImage(): string
     {
-        return $this->image;
+        return $this->product->image;
     }
 
     public function getTotal(): int
     {
-        return $this->price * $this->quantity;
+        return $this->getPrice() * $this->quantity;
     }
 
     public function getProduct(): Product
     {
-        return Product::find($this->id);
+        return $this->product;
     }
 
     public function getFormattedPrice(): string
     {
-        return formatMoney($this->price);
+        return formatMoney($this->getPrice());
+    }
+
+    public function getUrl(): string
+    {
+        return $this->product->show();
     }
 
     public function toArray(): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'price' => $this->price,
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'price' => $this->getPrice(),
             'formatted_price' => $this->getFormattedPrice(),
+            'total' => $this->getTotal(),
+            'total_formatted' => formatMoney( $this->getTotal()),
             'quantity' => $this->quantity,
-            'image' => $this->image,
+            'image' => $this->getImage(),
+            'url' => $this->getUrl()
         ];
     }
+
 }

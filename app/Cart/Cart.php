@@ -23,7 +23,7 @@ class Cart
 
     /**
      * added coupons
-     * 
+     *
      */
     private Collection $coupons;
 
@@ -82,18 +82,12 @@ class Cart
     public function products(): Collection
     {
         return Product::find($this->content()->keys())
-            ->map(fn (Product $product) => new CartItem(
-                id: $product->id,
-                name: $product->name,
-                price: $product->getRawOriginal('price'),
-                quantity: $this->content()->get($product->id) ?? 0,
-                image: $product->image,
-            ));
+            ->map(fn (Product $product) => (new CartItem($product, $this->content()->get($product->id)))->toArray());
     }
 
     public function total(): int
     {
-        return $this->products()->sum(fn (CartItem $item) => $item->getTotal());
+        return $this->products()->sum(fn (array $item) => $item['total']);
     }
 
     public function coupons(): Collection
