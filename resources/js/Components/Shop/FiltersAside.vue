@@ -1,14 +1,34 @@
 <script setup>
-    defineProps({
-        filters: {
-            type: Object,
-            required: true
-        },
-        categories: {
-            type: Object,
-            required: true
-        }
-    })
+import { useCartStore } from "@/Store/useCartStore";
+import { Inertia } from "@inertiajs/inertia";
+import {onMounted, watch} from "vue";
+const cartStore = useCartStore();
+
+const props = defineProps({
+    filters: {
+        type: Object,
+        required: true,
+    },
+    categories: {
+        type: Object,
+        required: true,
+    },
+});
+
+onMounted(() => {
+    cartStore.filters = props.filters
+})
+
+watch(
+    () => cartStore.filters,
+    (currVal) => {
+        console.log(currVal);
+        Inertia.get(route("shop", currVal), {}, {preserveState: true, replace: true});
+    },
+    {
+        deep: true,
+    }
+);
 </script>
 
 <template>
@@ -18,12 +38,13 @@
                 <h2 class="font-semibold text-heading text-xl md:text-2xl">
                     Filters
                 </h2>
-                <button
+                <Link
+                    :href="route('shop')"
                     class="flex-shrink text-xs mt-0.5 transition duration-150 ease-in focus:outline-none hover:text-heading"
                     aria-label="Clear All"
                 >
                     Clear All
-                </button>
+                </Link>
             </div>
             <div class="flex flex-wrap -m-1.5 pt-2"></div>
         </div>
@@ -33,51 +54,21 @@
             </h3>
             <div class="mt-2 flex flex-col space-y-4">
                 <label
-                    v-for="category in categories" :key="category.id"
+                    v-for="category in categories"
+                    :key="category.id"
                     class="group flex items-center text-heading text-sm cursor-pointer"
                     ><input
                         type="checkbox"
-                        class="form-checkbox w-5 h-5 border border-gray-300 rounded cursor-pointer transition duration-500 ease-in-out focus:ring-offset-0 text-heading hover:border-heading focus:outline-none focus:ring-0 focus-visible:outline-none checked:bg-heading"
-                        name="women"
-                        value="women"
-                    /><span class="ml-4 mr-4 -mt-0.5" v-text="category.name"></span></label
-                ><label
-                    class="group flex items-center text-heading text-sm cursor-pointer"
-                    ><input
-                        type="checkbox"
-                        class="form-checkbox w-5 h-5 border border-gray-300 rounded cursor-pointer transition duration-500 ease-in-out focus:ring-offset-0 text-heading hover:border-heading focus:outline-none focus:ring-0 focus-visible:outline-none checked:bg-heading"
-                        name="watch"
-                        value="watch"
-                    /><span class="ml-4 mr-4 -mt-0.5">Watch</span></label
-                ><label
-                    class="group flex items-center text-heading text-sm cursor-pointer"
-                    ><input
-                        type="checkbox"
-                        class="form-checkbox w-5 h-5 border border-gray-300 rounded cursor-pointer transition duration-500 ease-in-out focus:ring-offset-0 text-heading hover:border-heading focus:outline-none focus:ring-0 focus-visible:outline-none checked:bg-heading"
-                        name="sunglass"
-                        value="sunglass"
-                    /><span class="ml-4 mr-4 -mt-0.5">Sunglass</span></label
-                ><label
-                    class="group flex items-center text-heading text-sm cursor-pointer"
-                    ><input
-                        type="checkbox"
-                        class="form-checkbox w-5 h-5 border border-gray-300 rounded cursor-pointer transition duration-500 ease-in-out focus:ring-offset-0 text-heading hover:border-heading focus:outline-none focus:ring-0 focus-visible:outline-none checked:bg-heading"
-                        name="sports"
-                        value="sports"
-                    /><span class="ml-4 mr-4 -mt-0.5">Sports</span></label
-                ><label
-                    class="group flex items-center text-heading text-sm cursor-pointer"
-                    ><input
-                        type="checkbox"
-                        class="form-checkbox w-5 h-5 border border-gray-300 rounded cursor-pointer transition duration-500 ease-in-out focus:ring-offset-0 text-heading hover:border-heading focus:outline-none focus:ring-0 focus-visible:outline-none checked:bg-heading"
-                        name="sneakers"
-                        value="sneakers"
-                    /><span class="ml-4 mr-4 -mt-0.5">Sneakers</span></label
-                >
-              
+                        class="form-checkbox w-5 h-5 border border-gray-300 rounded cursor-pointer transition duration-500 ease-in-out focus:ring-offset-0 text-heading hover:border-heading focus:outline-none focus:ring-0 focus-visible:outline-none checked:bg-heading ml-4 mr-4 -mt-0.5"
+                        :name="category.name"
+                        :value="category.slug"
+                        v-model="cartStore.filters.categories" /><span
+                        v-text="category.name"
+                    ></span
+                ></label>
             </div>
         </div>
-     
+
         <div class="block border-b border-gray-300 pb-7 mb-7">
             <h3 class="text-heading text-sm md:text-base font-semibold mb-7">
                 Price
@@ -100,7 +91,7 @@
                                 placeholder="0"
                                 min="0"
                                 max="500"
-                                value=""
+                                v-model="cartStore.filters.priceMin"
                             />
                         </div>
                     </div>
@@ -118,7 +109,7 @@
                                 placeholder="90"
                                 min="0"
                                 max="500"
-                                value=""
+                                v-model="cartStore.filters.priceMax"
                             />
                         </div>
                     </div>

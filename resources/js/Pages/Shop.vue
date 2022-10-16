@@ -1,7 +1,7 @@
 <script setup>
 import ProductCard from "@/Components/Shop/ProductCard.vue";
-import { computed } from "@vue/reactivity";
-import FiltersAside from "../Components/Shop/FiltersAside.vue";
+import {computed} from "vue";
+import FiltersAside from "@/Components/Shop/FiltersAside.vue";
 
 const props = defineProps({
     products: {
@@ -21,6 +21,7 @@ const props = defineProps({
 const hasNextPage = computed(
     () => props.products.meta.current_page < props.products.meta.last_page
 );
+
 </script>
 
 <template>
@@ -131,6 +132,10 @@ const hasNextPage = computed(
                             :product="product"
                             :key="product.id"
                         />
+                    </div>
+
+                    <div v-if="products.meta.total === 0" class="flex flex-col items-center">
+                        <h3 class="w-full text-center text-lg lg:text-xl font-semibold text-heading my-7">Sorry, No Products Found</h3>
                     </div>
                     <div class="text-center pt-8 xl:pt-14" v-if="hasNextPage">
                         <Link
