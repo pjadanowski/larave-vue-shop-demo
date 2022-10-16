@@ -1,0 +1,17 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "array_syntax": {"syntax": "short"},
+        "binary_operator_spaces": {
+            "operators": {
+                "=>": "align"
+            }
+        },
+        "simplified_null_return": true,
+        "braces": false,
+        "new_with_braces": {
+            "anonymous_class": false,
+            "named_class": false
+        }
+    }
+}
