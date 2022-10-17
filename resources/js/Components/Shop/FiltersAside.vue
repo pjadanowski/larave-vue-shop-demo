@@ -2,6 +2,7 @@
 import { useCartStore } from "@/Store/useCartStore";
 import { Inertia } from "@inertiajs/inertia";
 import {onMounted, watch} from "vue";
+import  isEmpty from "lodash/isEmpty"
 const cartStore = useCartStore();
 
 const props = defineProps({
@@ -16,7 +17,9 @@ const props = defineProps({
 });
 
 onMounted(() => {
-    cartStore.filters = props.filters
+    if (!isEmpty(props.filters.length)) {
+        cartStore.filters = props.filters
+    }
 })
 
 watch(
