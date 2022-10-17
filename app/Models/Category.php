@@ -14,7 +14,7 @@ class Category extends Model
     use HasSlug;
 
     protected $fillable = [
-        'name', 'slug', 'parent_id'
+        'name', 'slug', 'parent_id',
     ];
 
     public function getRouteKeyName(): string

@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use Money\Money;
-use Money\Currency;
-use NumberFormatter;
 use Money\Currencies\ISOCurrencies;
+use Money\Currency;
 use Money\Formatter\IntlMoneyFormatter;
+use Money\Money;
+use NumberFormatter;
 
 class MoneyService
 {
@@ -19,7 +19,7 @@ class MoneyService
     {
         return new IntlMoneyFormatter(
             new NumberFormatter('en_US', NumberFormatter::CURRENCY),
-            new ISOCurrencies()
+            new ISOCurrencies
         );
     }
 

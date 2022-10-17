@@ -18,18 +18,15 @@ class CartItem
         return $this->product->id;
     }
 
-
     public function getName(): string
     {
         return $this->product->name;
     }
 
-
     public function getPrice(): int
     {
         return $this->product->getRawOriginal('price');
     }
-
 
     public function getQuantity(): int
     {
@@ -64,16 +61,15 @@ class CartItem
     public function toArray(): array
     {
         return [
-            'id' => $this->getId(),
-            'name' => $this->getName(),
-            'price' => $this->getPrice(),
+            'id'              => $this->getId(),
+            'name'            => $this->getName(),
+            'price'           => $this->getPrice(),
             'formatted_price' => $this->getFormattedPrice(),
-            'total' => $this->getTotal(),
-            'total_formatted' => formatMoney( $this->getTotal()),
-            'quantity' => $this->quantity,
-            'image' => $this->getImage(),
-            'url' => $this->getUrl()
+            'total'           => $this->getTotal(),
+            'total_formatted' => formatMoney($this->getTotal()),
+            'quantity'        => $this->quantity,
+            'image'           => $this->getImage(),
+            'url'             => $this->getUrl(),
         ];
     }
-
 }

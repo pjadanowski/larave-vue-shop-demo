@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
+use App\Casts\MoneyCast;
 use App\Filters\Product\ProductFilters;
 use App\Traits\HasSlug;
-use App\Casts\MoneyCast;
-use App\Models\Category;
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\Request;
 
 /**
  * @method Builder filter(Builder $builder, Request $request)

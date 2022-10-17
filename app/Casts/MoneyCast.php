@@ -7,14 +7,12 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 class MoneyCast implements CastsAttributes
 {
-
     protected MoneyService $moneyService;
 
     public function __construct()
     {
-        $this->moneyService = new MoneyService();
+        $this->moneyService = new MoneyService;
     }
-
 
     /**
      * Cast the given value.
@@ -30,13 +28,12 @@ class MoneyCast implements CastsAttributes
         return $this->moneyService->format($value);
     }
 
-
     /**
      * Prepare the given value for storage.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @param  string  $key
-     * @param  int     $value
+     * @param  int  $value
      * @param  array  $attributes
      * @return int
      */

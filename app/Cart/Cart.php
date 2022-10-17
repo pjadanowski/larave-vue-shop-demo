@@ -2,7 +2,6 @@
 
 namespace App\Cart;
 
-use App\Models\Coupon;
 use App\Models\Product;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -23,22 +22,19 @@ class Cart
 
     /**
      * added coupons
-     *
      */
     private Collection $coupons;
 
-
     public function __construct()
     {
-        $this->content = new Collection();
-        $this->coupons = new Collection();
+        $this->content = new Collection;
+        $this->coupons = new Collection;
     }
 
     public function key(): string
     {
-        return 'cart_' . (Auth::id() ?? str_replace('.', '', Request::ip()));
+        return 'cart_'.(Auth::id() ?? str_replace('.', '', Request::ip()));
     }
-
 
     public function content(): Collection
     {
@@ -65,19 +61,16 @@ class Cart
         $this->storeContentInSession();
     }
 
-
     public function remove($productId): void
     {
         $this->content()->forget($productId);
         $this->storeContentInSession();
     }
 
-
     public function count(): int
     {
         return $this->content()->sum();
     }
-
 
     public function products(): Collection
     {

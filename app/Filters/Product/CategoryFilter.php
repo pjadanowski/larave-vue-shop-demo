@@ -9,6 +9,6 @@ class CategoryFilter extends FilterAbstract
 {
     public function filter(Builder $builder, mixed $value): Builder
     {
-        return $builder->whereHas('category', fn(Builder $q) => $q->whereIn('slug', $value));
+        return $builder->whereHas('category', fn (Builder $q) => $q->whereIn('slug', $value));
     }
 }

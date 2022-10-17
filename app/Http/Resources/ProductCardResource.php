@@ -15,12 +15,12 @@ class ProductCardResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'price' => $this->price,
-            'image' => $this->image,
+            'id'       => $this->id,
+            'name'     => $this->name,
+            'price'    => $this->price,
+            'image'    => $this->image,
             'category' => $this->category->only('name'),
-            'url' => $this->show(),
+            'url'      => $this->show(),
         ];
     }
 }

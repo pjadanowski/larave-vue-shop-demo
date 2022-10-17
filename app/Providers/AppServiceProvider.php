@@ -24,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(Cart::class, fn ($app) => new Cart());
+        $this->app->singleton(Cart::class, fn ($app) => new Cart);
     }
 }

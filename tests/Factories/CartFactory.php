@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Factories;
-
 
 trait CartFactory
 {
@@ -29,9 +27,7 @@ trait CartFactory
         }
     }
 
-
     // ! coupons are not avaliable in demo version
-
 
     // protected function addCoupon(Coupon $coupon = null)
     // {

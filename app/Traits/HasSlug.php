@@ -24,7 +24,7 @@ trait HasSlug
         $slug = $slugConst;
 
         while (self::where('slug', $slug)->exists()) {
-            $slug = $slugConst . '-' . $index++;
+            $slug = $slugConst.'-'.$index++;
         }
 
         return $slug;

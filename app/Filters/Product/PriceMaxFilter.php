@@ -9,7 +9,7 @@ class PriceMaxFilter extends FilterAbstract
 {
     public function filter(Builder $builder, mixed $value): Builder
     {
-        if (!is_numeric($value)) {
+        if (! is_numeric($value)) {
             return $builder;
         }
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -12,7 +11,7 @@ class CartController extends Controller
     {
         return Inertia::render('Cart', [
             'cartProducts' => cart()->products(),
-            'total'        => formatMoney(cart()->total())
+            'total'        => formatMoney(cart()->total()),
         ]);
     }
 
@@ -26,6 +25,7 @@ class CartController extends Controller
         cart()->add(...$validated);
 
         session()->flash('success', 'Product added to cart');
+
         return back();
     }
 }

@@ -41,8 +41,8 @@ class HandleInertiaRequests extends Middleware
             'ziggy' => fn () => array_merge((new Ziggy)->toArray(), [
                 'location' => $request->url(),
             ]),
-            'cart' => fn() => [
-                'content' => cart()->content(),
+            'cart' => fn () => [
+                'content'    => cart()->content(),
                 'itemsCount' => cart()->count(),
             ],
             'flash' => [

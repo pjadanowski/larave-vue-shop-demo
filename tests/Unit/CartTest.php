@@ -2,14 +2,13 @@
 
 namespace Tests\Unit\Cart;
 
+use App\Models\Product;
 use Tests\Factories\CartFactory;
 use Tests\TestCase;
-use App\Models\Product;
 
 class CartTest extends TestCase
 {
     use CartFactory;
-
 
     public function test_add_item_to_cart()
     {
@@ -64,12 +63,12 @@ class CartTest extends TestCase
     public function testTotalMethod()
     {
         $product1 = Product::create([
-            'name' => 'Product 1',
+            'name'  => 'Product 1',
             'price' => 1999,
         ]);
 
         $product2 = Product::create([
-            'name' => 'Product 2',
+            'name'  => 'Product 2',
             'price' => 1100,
         ]);
 
@@ -80,7 +79,6 @@ class CartTest extends TestCase
     }
 
     /**
-     * 
      * coupons are not available in demo version.
      */
 

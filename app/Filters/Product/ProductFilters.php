@@ -24,5 +24,4 @@ class ProductFilters extends FiltersAbstract
 
         return array_filter($params, fn ($value, $queryKey) => ! empty($value) && in_array($queryKey, $allowedKeys), ARRAY_FILTER_USE_BOTH);
     }
-
 }

@@ -26,7 +26,6 @@ Route::get('/product/{product}', [ProductController::class, 'show'])->name('prod
 Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
-
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
