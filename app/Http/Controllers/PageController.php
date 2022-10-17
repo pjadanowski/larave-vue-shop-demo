@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductCardResource;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class PageController extends Controller
 {
-    public function index()
+    public function index(): \Inertia\Response
     {
-        $products = Product::limit(4)->get();
+        $products = Product::with('category')->inRandomOrder()->limit(4)->get();
 
-        return Inertia::render('Index', compact('products'));
+        return Inertia::render('Index', [
+            'products' => ProductCardResource::collection($products),
+        ]);
     }
 }

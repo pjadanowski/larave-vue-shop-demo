@@ -113,14 +113,14 @@ watch(
                             />
                         </div>
                     </div>
-                    <div class="price-btn-wrap pt-[20px]">
-                        <button
-                            type="submit"
-                            class="flex items-center bg-black text-white px-[25px] py-[8px] h-[40px] transition-all hover:bg-primary"
-                        >
-                            Filter
-                        </button>
-                    </div>
+<!--                    <div class="price-btn-wrap pt-[20px]">-->
+<!--                        <button-->
+<!--                            type="submit"-->
+<!--                            class="flex items-center bg-black text-white px-[25px] py-[8px] h-[40px] transition-all hover:bg-primary"-->
+<!--                        >-->
+<!--                            Filter-->
+<!--                        </button>-->
+<!--                    </div>-->
                 </form>
             </div>
         </div>

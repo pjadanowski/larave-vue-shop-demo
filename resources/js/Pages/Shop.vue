@@ -25,7 +25,7 @@ const hasNextPage = computed(
 </script>
 
 <template>
-    <div class="relative flex-grow" style="min-height: -webkit-fill-available">
+    <div class="relative flex-grow">
         <div class="mx-auto max-w-[1920px] px-4 md:px-8 2xl:px-16">
             <div class="flex pt-8 pb-16 lg:pb-20">
                 <div class="flex-shrink-0 pr-24 pl-24 hidden lg:block w-96">

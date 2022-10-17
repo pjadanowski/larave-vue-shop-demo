@@ -188,7 +188,7 @@ defineProps({
                                     >Category:</span
                                 ><Link
                                     class="transition hover:underline hover:text-heading"
-                                    :href="route('shop', {category: product.category.name})"
+                                    :href="route('shop', {categories: [product.category.name]})"
                                     >{{ product.category.name }}</Link
                                 >
                             </li>
@@ -210,7 +210,7 @@ defineProps({
                                         >,</span
                                     ></a
                                 >
-                            </li>                           
+                            </li>
                         </ul>
                     </div>
                 </div>
